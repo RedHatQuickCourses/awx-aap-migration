@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Section 2 :: Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration</title>
+    <title>What’s the benefit of using Ansible Automation Platform over AWX? :: Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration</title>
     <link rel="prev" href="section1.html">
     <link rel="next" href="section3.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -40,7 +40,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html">index.adoc</a>
   </li>
 </ul>
   </li>
@@ -55,45 +55,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Chapter 1</a>
+    <a class="nav-link" href="index.html">Migration of AWX to AAP 2.5</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Section 1</a>
+    <a class="nav-link" href="section1.html">Why did we create this migration course from free to enterprise software?</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section2.html">Section 2</a>
+    <a class="nav-link" href="section2.html">What’s the benefit of using Ansible Automation Platform over AWX?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section3.html">Section 3</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Chapter 2</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Section 1</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter3/index.html">Chapter 3</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section1.html">Section 1</a>
+    <a class="nav-link" href="section3.html">Deployment of AWX</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Section 2</a>
+    <a class="nav-link" href="section4.html">Deployment of the Ansible Automation Platform 2.5 operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Migration of AWX to AAP 2.5</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">section6.adoc</a>
   </li>
 </ul>
   </li>
@@ -135,8 +115,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration</a></li>
-    <li><a href="index.html">Chapter 1</a></li>
-    <li><a href="section2.html">Section 2</a></li>
+    <li><a href="index.html">Migration of AWX to AAP 2.5</a></li>
+    <li><a href="section2.html">What’s the benefit of using Ansible Automation Platform over AWX?</a></li>
   </ul>
 </nav>
 </div>
@@ -145,26 +125,79 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Section 2</h1>
-<div class="ulist">
-<ul>
-<li>
-<p>Create multiple copies of this section as needed.</p>
-</li>
-<li>
-<p>Remove any unnecessary sections or chapter pages.</p>
-</li>
-<li>
-<p>Customize the section as appropriate.</p>
-</li>
-<li>
-<p>Ensure that each page contains a manageable amount of content.</p>
-</li>
-</ul>
-</div>
+<h1 class="page">What’s the benefit of using Ansible Automation Platform over AWX?</h1>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat Ansible Automation Platform</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trusted chain-of-custody for certified and private content. <a href="https://www.redhat.com/en/technologies/management/ansible/gain-security-with-red-hat-ansible-automation-platform">Security hardened</a> with support, performance testing, bug fixes, and other standardized practices—for a more consistent and less vulnerable enterprise environment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Certified content and partner ecosystem</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">140+ <a href="https://catalog.redhat.com/platform/red-hat-ansible">certified content collections</a> across 60+ partners. Benefit from pre-built, fully supported, and certified automation content from Red Hat and our partners.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Life cycle support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At least 18 months of <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">enterprise support</a> per release. Critical bugfix and security vulnerability backporting for all components.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Legal protections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intellectual property protections via the <a href="https://www.redhat.com/en/about/open-source-assurance">Open Source Assurance Agreement</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analytics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Automation analytics and Red Hat Insights for Ansible Automation Platform offer in-depth analytics and reporting for planning and tracking performance and adoption.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrades and migrations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supported migration to major releases as well as upgrades to minor releases.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Training and consulting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expert resources to help you build and run a successful automation practice, backed by robust training offerings and support. Hands-on migration assistance from AWX to Ansible Automation Platform is also available.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloud deployment options</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Managed and self-managed applications available to deploy on your cloud of choice, including <a href="https://www.redhat.com/en/technologies/management/ansible/azure">Microsoft Azure</a>, <a href="https://www.redhat.com/en/technologies/management/ansible/aws">AWS</a>, and <a href="https://www.redhat.com/en/technologies/management/ansible/google-cloud">Google Cloud</a>. Counts toward committed spend agreements. Supported by Red Hat with integrated billing. <a href="https://www.redhat.com/en/technologies/management/ansible/pricing">View deployment options and pricing information</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event-Driven Ansible</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Separate upstream project that requires manual integration into your environment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.redhat.com/en/technologies/management/ansible/features#event-driven-ansible">Event-Driven Ansible</a> is an integrated and tested product component of Ansible Automation Platform that reduces manual tasks, delivers more efficient IT operations, and frees your teams to focus on innovation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ansible automation hub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Separate upstream project that requires manual integration into your environment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.redhat.com/en/technologies/management/ansible/features#ansible-automation-hub">Ansible automation hub</a> is an integrated and tested product component of Ansible Automation Platform.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat Ansible Lightspeed with IBM watsonx Code Assistant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integrated generative AI tooling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.redhat.com/en/technologies/management/ansible/ansible-lightspeed">Ansible Lightspeed with watsonx Code Assistant</a> is a generative AI service that produces code recommendations built on Ansible best practices. It is included with an Ansible Automation Platform subscription, but requires purchase of IBM watsonx Code Assistant to activate all features.</p></td>
+</tr>
+</tbody>
+</table>
 <nav class="pagination">
-  <span class="prev"><a href="section1.html">Section 1</a></span>
-  <span class="next"><a href="section3.html">Section 3</a></span>
+  <span class="prev"><a href="section1.html">Why did we create this migration course from free to enterprise software?</a></span>
+  <span class="next"><a href="section3.html">Deployment of AWX</a></span>
 </nav>
 </article>
   </div>

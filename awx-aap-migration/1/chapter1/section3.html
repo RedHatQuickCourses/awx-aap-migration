@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Section 3 :: Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration</title>
+    <title>Deployment of AWX :: Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration</title>
     <link rel="prev" href="section2.html">
-    <link rel="next" href="../chapter2/index.html">
+    <link rel="next" href="section4.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -40,7 +40,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html">index.adoc</a>
   </li>
 </ul>
   </li>
@@ -55,45 +55,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Chapter 1</a>
+    <a class="nav-link" href="index.html">Migration of AWX to AAP 2.5</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Section 1</a>
+    <a class="nav-link" href="section1.html">Why did we create this migration course from free to enterprise software?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">Section 2</a>
+    <a class="nav-link" href="section2.html">What’s the benefit of using Ansible Automation Platform over AWX?</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section3.html">Section 3</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Chapter 2</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Section 1</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter3/index.html">Chapter 3</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section1.html">Section 1</a>
+    <a class="nav-link" href="section3.html">Deployment of AWX</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Section 2</a>
+    <a class="nav-link" href="section4.html">Deployment of the Ansible Automation Platform 2.5 operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Migration of AWX to AAP 2.5</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">section6.adoc</a>
   </li>
 </ul>
   </li>
@@ -135,8 +115,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration</a></li>
-    <li><a href="index.html">Chapter 1</a></li>
-    <li><a href="section3.html">Section 3</a></li>
+    <li><a href="index.html">Migration of AWX to AAP 2.5</a></li>
+    <li><a href="section3.html">Deployment of AWX</a></li>
   </ul>
 </nav>
 </div>
@@ -145,26 +125,131 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Section 3</h1>
-<div class="ulist">
-<ul>
+<h1 class="page">Deployment of AWX</h1>
+<div class="videoblock text-center">
+<div class="content">
+<video src="_images/aap_deploy.mp4" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to the above Video and then Follow the below step to do the deployment:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Create multiple copies of this section as needed.</p>
+<p>First create a clone of the awx-operator github repo:</p>
+<div class="literalblock">
+<div class="content">
+<pre># git clone https://github.com/ansible/awx-operator.git
+# cd awx-operator
+# git tag
+# git checkout tags/&lt;tag&gt;
+# For instance:
+# git checkout tags/&lt;latest&gt;</pre>
+</div>
+</div>
 </li>
 <li>
-<p>Remove any unnecessary sections or chapter pages.</p>
+<p>There is a make target you can run:</p>
+<div class="literalblock">
+<div class="content">
+<pre>make deploy</pre>
+</div>
+</div>
 </li>
 <li>
-<p>Customize the section as appropriate.</p>
+<p>Create a file called <code>kustomization.yaml</code> with the following content:</p>
+<div class="literalblock">
+<div class="content">
+<pre>apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+# Find the latest tag here: https://github.com/ansible/awx-operator/releases
+ - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
+# Set the image tags to match the git version from above
+images:
+ - name: quay.io/ansible/awx-operator
+   newTag: &lt;tag&gt;
+# Specify a custom namespace in which to install AWX
+namespace: awx</pre>
+</div>
+</div>
 </li>
 <li>
-<p>Ensure that each page contains a manageable amount of content.</p>
+<p>Install the manifests by running this:</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -k .
+namespace/awx created
+customresourcedefinition.apiextensions.k8s.io/awxbackups.awx.ansible.com created
+customresourcedefinition.apiextensions.k8s.io/awxrestores.awx.ansible.com created
+customresourcedefinition.apiextensions.k8s.io/awxs.awx.ansible.com created
+serviceaccount/awx-operator-controller-manager created
+role.rbac.authorization.k8s.io/awx-operator-awx-manager-role created
+role.rbac.authorization.k8s.io/awx-operator-leader-election-role created
+clusterrole.rbac.authorization.k8s.io/awx-operator-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/awx-operator-proxy-role created
+rolebinding.rbac.authorization.k8s.io/awx-operator-awx-manager-rolebinding created
+rolebinding.rbac.authorization.k8s.io/awx-operator-leader-election-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/awx-operator-proxy-rolebinding created
+configmap/awx-operator-awx-manager-config created
+service/awx-operator-controller-manager-metrics-service created
+deployment.apps/awx-operator-controller-manager created</pre>
+</div>
+</div>
 </li>
-</ul>
+<li>
+<p>Edit the <code>awx-demo.yml</code> file with the following content:</p>
+<div class="literalblock">
+<div class="content">
+<pre>apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+ name: awx-demo
+spec:
+ service_type: clusterip
+ ingress_type: Route</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make sure to add this new file to the list of resources in your <code>kustomization.yaml</code> file:</p>
+<div class="literalblock">
+<div class="content">
+<pre>resources:
+ - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
+ # Add this extra line:
+ - awx-demo.yml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the changes to create the AWX instance in your cluster</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -k .</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Create Resources on the AWX which can be confirmed after migration Following Video Tutorial will help in doing that.
+</td>
+</tr>
+</table>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">Section 2</a></span>
-  <span class="next"><a href="../chapter2/index.html">Chapter 2</a></span>
+  <span class="prev"><a href="section2.html">What’s the benefit of using Ansible Automation Platform over AWX?</a></span>
+  <span class="next"><a href="section4.html">Deployment of the Ansible Automation Platform 2.5 operator</a></span>
 </nav>
 </article>
   </div>
