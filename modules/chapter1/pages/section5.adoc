@@ -1,5 +1,7 @@
 = Migration of AWX to AAP 2.5 
 
+video::awx_aap_migration.mp4[align="center",width=700,height=400]
+
 . Run the following command to only make the resources available like postgres on the openshift deployed system: 	
 
   oc apply -f - << EOF

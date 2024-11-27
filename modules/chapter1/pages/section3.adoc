@@ -1,6 +1,6 @@
 = Deployment of AWX 
 
-video::aap_deploy.mp4[align="center"]
+video::awx_deployment.mp4[align="center",width=700,height=400]
 
 Refer to the above Video and then Follow the below step to do the deployment: 
 
@@ -80,3 +80,4 @@ Refer to the above Video and then Follow the below step to do the deployment:
 
 NOTE: Create Resources on the AWX which can be confirmed after migration Following Video Tutorial will help in doing that. 
 
+video::awx_resource_creation.mp4[align="center",width=700,height=400]
