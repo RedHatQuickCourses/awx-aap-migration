@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title: "Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration"
+  start_page: awx-aap-migration::index.adoc
 
 content:
   sources:

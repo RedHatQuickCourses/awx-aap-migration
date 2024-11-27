@@ -1,5 +1,5 @@
-name: REPLACEREPONAME
-title: FIXME Course Title
+name: awx-aap-migration
+title: "Ansible Web eXecutable (AWX) to Ansible Automation Platform 2.5 (AAP) Migration"
 version: 1
 nav:
 - modules/ROOT/nav.adoc
