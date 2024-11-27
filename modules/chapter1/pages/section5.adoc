@@ -1,0 +1,78 @@
+= Migration of AWX to AAP 2.5 
+
+. Run the following command to only make the resources available like postgres on the openshift deployed system: 	
+
+  oc apply -f - << EOF
+  kind: AnsibleAutomationPlatform
+  apiVersion: aap.ansible.com/v1alpha1
+  metadata:
+    name: aap
+    namespace: awx
+  spec:
+   replicas: 0
+  EOF
+
+. To set the current namespace as awx.
+
+    $ oc config set-context --current --namespace=awx
+
+. Export the below variables so that we will be used to create the commands to run the migration: 
+ 
+ export AWX_NAMESPACE=awx
+ export AWX_NAME=awx-demo
+ export AWX_DB_NAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.database} | base64 -d)
+ export AWX_DB_HOST=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.host} | base64 -d)
+ export AWX_DB_PASSWORD=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.password} | base64 -d)
+ export AWX_DB_PORT=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.port} | base64 -d)
+ export AWX_DB_USERNAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.username} | base64 -d)
+
+ export AUTOMATION_CONTROLLER_NAME=aap
+ export AUTOMATION_CONTROLLER_NAMESPACE=awx
+ export AUTOMATION_CONTROLLER_DB_NAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.database} | base64 -d)
+ export AUTOMATION_CONTROLLER_DB_PASSWORD=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.password} | base64 -d)
+ export AUTOMATION_CONTROLLER_DB_PORT=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.port} | base64 -d)
+ export AUTOMATION_CONTROLLER_DB_USERNAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.username} | base64 -d)
+ export AUTOMATION_CONTROLLER_DB_HOST=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.host} | base64 -d)
+
+. Run the following command to enter the AWX postgres database container:
+
+  oc exec -it $AWX_NAME-postgres-15-0 -- bash
+
+. Run the following command inside the Container to migrate the data: 	
+
+  PGPASSWORD=$AWX_DB_PASSWORD pg_dump -h $AWX_DB_HOST -U $AWX_DB_USERNAME -d $AWX_DB_NAME -p $AWX_DB_PORT -F custom  --exclude-table-data 'main_jobevent*' --exclude-table-data 'main_job' | PGPASSWORD=$AUTOMATION_CONTROLLER_DB_PASSWORD pg_restore --clean --if-exists  --no-owner -h $AUTOMATION_CONTROLLER_DB_HOST -U $AUTOMATION_CONTROLLER_DB_USERNAME -d $AUTOMATION_CONTROLLER_DB_NAME -p $AUTOMATION_CONTROLLER_DB_PORT"
+
+  Command breakdown:
+  Part 1: PGPASSWORD=$AWX_DB_PASSWORD pg_dump ...
+	•	PGPASSWORD=$AWX_DB_PASSWORD: Temporarily sets the PGPASSWORD environment variable to the password for the AWX database ($AWX_DB_PASSWORD). This allows the pg_dump command to authenticate without prompting for a password.
+	•	pg_dump: A PostgreSQL utility used to back up a database.
+	•	-h $AWX_DB_HOST: Specifies the hostname of the AWX database server. $AWX_DB_HOST should be replaced with the actual hostname.
+	•	-U $AWX_DB_USERNAME: Specifies the username to connect to the AWX database. $AWX_DB_USERNAME should be replaced with the actual database username.
+	•	-d $AWX_DB_NAME: Specifies the name of the AWX database to be dumped. $AWX_DB_NAME should be replaced with the actual database name.
+	•	-p $AWX_DB_PORT: Specifies the port on which the AWX database server is listening. $AWX_DB_PORT should be replaced with the actual port number.
+	•	-F custom: Specifies the output format of the dump. The custom format is a PostgreSQL-specific format that allows for more flexibility during restoration.
+   • --exclude-table-data: This option is useful when you need the definition of a particular table even though you do not need the data in it
+	•	|: The pipe (|) redirects the output of the pg_dump command to the input of the pg_restore command. Essentially, it allows the dump to be directly restored into another database.
+
+
+  Part 2: PGPASSWORD=$AWX_DB_PASSWORD pg_restore ...
+	•	PGPASSWORD=$AUTOMATION_CONTROLLER_DB_PASSWORD: Again, sets the PGPASSWORD environment variable, but this time for the pg_restore command to authenticate with the target database.
+	•	pg_restore: A PostgreSQL utility used to restore a database from a backup.
+	•	--clean: Drops database objects before recreating them. This ensures that the target database is clean and only contains the objects from the backup.
+	•	--if-exists: Used with --clean, it ensures that objects are only dropped if they exist. This prevents errors if some objects are not present in the target database.
+ • --no-owner: If this flag isn’t set, then postgres will attribute anything it does to the owner of the original database, when importing and exporting, this could cause issues, so often we will say 
+	•	-h $AUTOMATION_CONTROLLER_DB_HOST: Specifies the hostname of the target Automation Controller database server. $AUTOMATION_CONTROLLER_DB_HOST should be replaced with the actual hostname.
+	•	-U $AUTOMATION_CONTROLLER_DB_USERNAME: Specifies the username to connect to the target database..
+	•	-d $AUTOMATION_CONTROLLER_DB_NAME: Specifies the name of the target database (in this case, automationcontroller) into which the backup will be restored.
+	•	-p $AUTOMATION_CONTROLLER_DB_PORT: Specifies the port on which the target database server is listening. $AUTOMATION_CONTROLLER_DB_PORT should be replaced with the actual port number.
+
+. To migrate the Organization / Teams and user run the below command on the terminal of aap-gateway-controller pod. 
+
+ # aap-gateway-manage migrate_service_data --username admin --merge-organizations true --api-slug controller -v 3
+
+Verify the data is migrated. 
+
+
+NOTE:  
+  The above is suggested to be used for local users only. You need to reset the Password for all the users that will get migrated using the above command. 
+  All Authentication Mechanism needs to be created manually on the Gateway due to centralized Authentication approach for all the softwares of Ansible Automation platform 2.5. 

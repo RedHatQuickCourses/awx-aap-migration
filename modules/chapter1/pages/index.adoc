@@ -1,7 +1,9 @@
-= Chapter 1
+= Migration of AWX to AAP 2.5 
 
-In this section, we cover... FIXME
+We will cover the following points: 
 
-
-- Add or remove section entries in the `antora.yaml` file as needed.
-- Ensure you create or delete the corresponding directory for the chapter accordingly.
+ - Why did we create this migration course from free to enterprise software?
+ - What’s the benefit of using Ansible Automation Platform over AWX?
+ - Deployment of AWX 
+ - Deployment of the Ansible Automation Platform 2.5 operator
+ - Migration of AWX to AAP 2.5 

@@ -1,0 +1,11 @@
+= Deployment of the Ansible Automation Platform 2.5 operator
+
+. Log in to Red Hat OpenShift Container Platform. 				
+. Navigate to Operators OperatorHub. 				
+. Search for Ansible Automation Platform and click Install. 				
+. Select an  stable-2.5 
+. Select namespace as awx
+. Click Install
+
+
+NOTE: It is recommended to have the AWX and AAP 2.5 in the same Namespace or else the communication issues occur between the pods while performing the database migration.

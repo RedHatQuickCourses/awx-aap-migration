@@ -3,7 +3,7 @@
 == Instructions to Launch Your Lab on the Red Hat Demo Platform (RHDP)
 
 . **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
-. **Search** for the catalog entry: **FIXME Lab Catalog Name**.
+. **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
 . **Click** on the catalog entry in the search results.
 . On the catalog page, **click** the **Order** button.
 . **Fill out** the required details in the order form.
@@ -12,7 +12,7 @@
 . **Click** the **Order** button to place your lab order.
 
 === Important Notes:
-- This lab may take approximately **FIXME minutes** to become ready.
+- This lab may take approximately **60 minutes** to become ready.
 - You will receive an **email with access details** once your lab environment is ready.
 - You can also **retrieve lab access** directly from the RHDP portal.
 

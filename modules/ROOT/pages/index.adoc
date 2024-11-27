@@ -1,27 +1,25 @@
-= An Example Quick Course
+== Migration of AWX to AAP 2.5 
 :navtitle: Home
 
-== Introduction
-
-Course Title: Course title FIXME
-
 Description:
-Course description FIXME
 
-Duration: FIXME hours
+Introducing the Ansible Automation platform Application Migration: Free to Enterprise course, which aims to close the gap between enterprise-grade solutions from the open-source automation. With an emphasis on scalability, security, and advanced capabilities, this extensive course will walk you through the process of moving automation workflows from free tools to reliable corporate platforms. This training gives you the knowledge and abilities to guarantee a smooth transition, whether you're updating your automation ecosystem or bringing it into compliance with organizational requirements.
+
+Duration: 40 Minutes
 
 == Objectives
 
 On completing this course, you should be able to:
 
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+- Learners can implement the steps provided to guide application migration.
+- Learners can define and discuss the necessity for AWX to AAP 2.5 migration.
+- Learners can define the benefits of utilizing AAP 2.5 to migrate applications.
+- Learners can diagnose and rectify known issues in AWX application migrations.
+
 
 == Prerequisites
 
 This course assumes that you have the following prior experience:
 
-* Course or experience...
-* Course or experience...
-* Course or experience...
+* Knowledge on Ansible Automation Platform.
+* Foundational Knowledge of Openshift and Linux. 

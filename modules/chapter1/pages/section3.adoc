@@ -1,6 +1,82 @@
-= Section 3
+= Deployment of AWX 
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+video::aap_deploy.mp4[align="center"]
+
+Refer to the above Video and then Follow the below step to do the deployment: 
+
+. First create a clone of the awx-operator github repo: 
+
+   # git clone https://github.com/ansible/awx-operator.git
+   # cd awx-operator
+   # git tag
+   # git checkout tags/<tag>
+   # For instance:
+   # git checkout tags/<latest>
+  
+
+. There is a make target you can run:
+
+   make deploy
+  
+
+. Create a file called `kustomization.yaml` with the following content:
+
+  apiVersion: kustomize.config.k8s.io/v1beta1
+  kind: Kustomization
+  resources:
+  # Find the latest tag here: https://github.com/ansible/awx-operator/releases
+   - github.com/ansible/awx-operator/config/default?ref=<tag>
+  # Set the image tags to match the git version from above
+  images:
+   - name: quay.io/ansible/awx-operator
+     newTag: <tag>
+  # Specify a custom namespace in which to install AWX
+  namespace: awx
+ 
+
+. Install the manifests by running this:
+
+  $ oc apply -k .
+  namespace/awx created
+  customresourcedefinition.apiextensions.k8s.io/awxbackups.awx.ansible.com created
+  customresourcedefinition.apiextensions.k8s.io/awxrestores.awx.ansible.com created
+  customresourcedefinition.apiextensions.k8s.io/awxs.awx.ansible.com created
+  serviceaccount/awx-operator-controller-manager created
+  role.rbac.authorization.k8s.io/awx-operator-awx-manager-role created
+  role.rbac.authorization.k8s.io/awx-operator-leader-election-role created
+  clusterrole.rbac.authorization.k8s.io/awx-operator-metrics-reader created
+  clusterrole.rbac.authorization.k8s.io/awx-operator-proxy-role created
+  rolebinding.rbac.authorization.k8s.io/awx-operator-awx-manager-rolebinding created
+  rolebinding.rbac.authorization.k8s.io/awx-operator-leader-election-rolebinding created
+  clusterrolebinding.rbac.authorization.k8s.io/awx-operator-proxy-rolebinding created
+  configmap/awx-operator-awx-manager-config created
+  service/awx-operator-controller-manager-metrics-service created
+  deployment.apps/awx-operator-controller-manager created
+
+
+. Edit the `awx-demo.yml` file with the following content: 
+ 
+  apiVersion: awx.ansible.com/v1beta1
+  kind: AWX
+  metadata:
+   name: awx-demo
+  spec:
+   service_type: clusterip
+   ingress_type: Route
+ 
+
+. Make sure to add this new file to the list of resources in your `kustomization.yaml` file:
+ 
+  resources:
+   - github.com/ansible/awx-operator/config/default?ref=<tag>
+   # Add this extra line:
+   - awx-demo.yml
+ 
+
+. Apply the changes to create the AWX instance in your cluster
+
+  $ oc apply -k .
+ 
+
+NOTE: Create Resources on the AWX which can be confirmed after migration Following Video Tutorial will help in doing that. 
+
