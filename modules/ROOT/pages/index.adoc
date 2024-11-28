@@ -1,4 +1,4 @@
-== Migration of AWX to AAP 2.5 
+= Migration of AWX to AAP 2.5 
 :navtitle: Home
 
 Description:
@@ -11,10 +11,10 @@ Duration: 40 Minutes
 
 On completing this course, you should be able to:
 
-- Learners can implement the steps provided to guide application migration.
-- Learners can define and discuss the necessity for AWX to AAP 2.5 migration.
-- Learners can define the benefits of utilizing AAP 2.5 to migrate applications.
-- Learners can diagnose and rectify known issues in AWX application migrations.
+- Implement the steps provided to guide application migration.
+- Define and discuss the necessity for AWX to AAP 2.5 migration.
+- Define the benefits of utilizing AAP 2.5 to migrate applications.
+- Diagnose and rectify known issues in AWX application migrations.
 
 
 == Prerequisites
