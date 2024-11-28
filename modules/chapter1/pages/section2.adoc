@@ -1,16 +1,16 @@
 = What’s the benefit of using Ansible Automation Platform over AWX?
+ 
 
-
-[cols=3*]
+[cols=3,3, options="header"]
 |===
-|          | AWX  | Red Hat Ansible Automation Platform
+| |image:awx.png[align=center, width=100,height=120] |image:aap.png[align=center, width=80,height=100]
 | Security | Not available | Trusted chain-of-custody for certified and private content. https://www.redhat.com/en/technologies/management/ansible/gain-security-with-red-hat-ansible-automation-platform[Security hardened] with support, performance testing, bug fixes, and other standardized practices—for a more consistent and less vulnerable enterprise environment 
 |Certified content and partner ecosystem | Not available | 140+ https://catalog.redhat.com/platform/red-hat-ansible[certified content collections] across 60+ partners. Benefit from pre-built, fully supported, and certified automation content from Red Hat and our partners.
 |Life cycle support|Not available|At least 18 months of https://access.redhat.com/support/policy/updates/ansible-automation-platform[enterprise support] per release. Critical bugfix and security vulnerability backporting for all components.
 |Legal protections|Not available| Intellectual property protections via the https://www.redhat.com/en/about/open-source-assurance[Open Source Assurance Agreement].
-|Analytics|Not available|Automation analytics and Red Hat Insights for Ansible Automation Platform offer in-depth analytics and reporting for planning and tracking performance and adoption.
-|Upgrades and migrations|Not available|Supported migration to major releases as well as upgrades to minor releases.
-|Training and consulting|Not available|Expert resources to help you build and run a successful automation practice, backed by robust training offerings and support. Hands-on migration assistance from AWX to Ansible Automation Platform is also available.
+|Automation analytics |Not available|https://www.redhat.com/en/technologies/management/ansible/automation-analytics-insights[Automation analytics] and Red Hat Insights for Ansible Automation Platform offer in-depth analytics and reporting for planning and tracking performance and adoption.
+|Upgrades and migrations|Not available|https://access.redhat.com/support/policy/updates/ansible-automation-platform[Supported migration] to major releases as well as upgrades to minor releases.
+|Training and consulting|Not available|https://www.redhat.com/en/consulting/automation[Expert resources] to help you build and run a successful automation practice, backed by robust https://www.redhat.com/en/technologies/management/ansible/training-and-certification[training offerings] and support. 
 |Cloud deployment options|Not available|Managed and self-managed applications available to deploy on your cloud of choice, including https://www.redhat.com/en/technologies/management/ansible/azure[Microsoft Azure], https://www.redhat.com/en/technologies/management/ansible/aws[AWS], and https://www.redhat.com/en/technologies/management/ansible/google-cloud[Google Cloud]. Counts toward committed spend agreements. Supported by Red Hat with integrated billing. https://www.redhat.com/en/technologies/management/ansible/pricing[View deployment options and pricing information].
 |Event-Driven Ansible|Separate upstream project that requires manual integration into your environment| https://www.redhat.com/en/technologies/management/ansible/features#event-driven-ansible[Event-Driven Ansible] is an integrated and tested product component of Ansible Automation Platform that reduces manual tasks, delivers more efficient IT operations, and frees your teams to focus on innovation.
 |Ansible automation hub |Separate upstream project that requires manual integration into your environment| https://www.redhat.com/en/technologies/management/ansible/features#ansible-automation-hub[Ansible automation hub] is an integrated and tested product component of Ansible Automation Platform.
