@@ -77,6 +77,10 @@ Verify the data is migrated.
 
 NOTE: 
 
- .. The above is suggested to be used for local users only. You need to reset the Password for all the users that will get migrated using the above command. 
+ .. The above is suggested to be used for local users only. You will need to reset the Password for the users on first login `use old password for first login` for step to step guid check the Following video tutorial.
  
  .. All Authentication Mechanism needs to be created manually on the Gateway due to centralized Authentication approach for all the softwares of Ansible Automation platform 2.5. 
++ 
+video::user_login.mp4[align="center",width=700,height=400]
+
+
