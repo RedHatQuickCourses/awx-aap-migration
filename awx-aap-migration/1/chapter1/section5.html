@@ -237,10 +237,17 @@ export AUTOMATION_CONTROLLER_DB_HOST=$(oc get secret -n $AUTOMATION_CONTROLLER_N
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>The above is suggested to be used for local users only. You need to reset the Password for all the users that will get migrated using the above command.</p>
+<p>The above is suggested to be used for local users only. You will need to reset the Password for the users on first login <code>use old password for first login</code> for step to step guid check the Following video tutorial.</p>
 </li>
 <li>
 <p>All Authentication Mechanism needs to be created manually on the Gateway due to centralized Authentication approach for all the softwares of Ansible Automation platform 2.5.</p>
+<div class="videoblock text-center">
+<div class="content">
+<video src="_images/user_login.mp4" width="700" height="400" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
 </li>
 </ol>
 </div>
