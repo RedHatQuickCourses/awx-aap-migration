@@ -4,6 +4,9 @@
 
 . **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
 . **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
++
+image::lab.png[]
+
 . **Click** on the catalog entry in the search results.
 . On the catalog page, **click** the **Order** button.
 . **Fill out** the required details in the order form.
