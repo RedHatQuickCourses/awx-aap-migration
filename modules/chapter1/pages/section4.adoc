@@ -1,5 +1,7 @@
 = Deployment of the Ansible Automation Platform 2.5 operator
 
+The following video will provide the step to step guide to Install the Ansible Automation Platform 2.5 operator: 
+
 video::aap_deploy.mp4[align="center",width=700,height=400]
 
 . Log in to Red Hat OpenShift Container Platform. 				

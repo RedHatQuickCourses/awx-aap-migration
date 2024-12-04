@@ -1,6 +1,23 @@
 = Why did we create this migration course from free to enterprise software?
 
-There are several advantages to switching from a free to an enterprise subscription, including increased scalability, security, and efficiency. Advanced features that are crucial for expanding enterprises, such as specialized customer assistance, and integration capabilities, are often included in enterprise plans. 
+There are several advantages to switching from a free to an enterprise software:
 
-Additionally, these plans provide analytics, compliance capabilities, and customizations based on industry standards, allowing companies to make data-driven decisions and streamline operations. Enterprise solutions are also performance-optimized, enabling increasing user needs and guaranteeing dependable uptime. Without the restrictions that frequently come with free editions, this enables businesses to concentrate on innovation and expansion using Automation what benefits are there to use Ansible Automation platform (AAP) over Ansible Web Executable (AWX)
+- Increased Scalability: Supports the growing demands of expanding enterprises.
+- Enhanced Security: Advanced measures ensure data protection and compliance.
+- Improved Efficiency: Optimized for performance and operational streamlining.
+
+- Advanced Features:
+.. Specialized customer assistance.
+.. Seamless integration capabilities.
+
+- Comprehensive Analytics: Enables data-driven decisions.
+- Compliance Capabilities: Meets industry standards for regulatory needs.
+- Customization Options: Tailored solutions for specific industry requirements.
+- Performance Optimization:
+.. Handles increasing user needs effectively.
+.. Guarantees dependable uptime.
+
+- Removal of Restrictions: Overcomes limitations common in free versions.
+
+This enables businesses to concentrate on innovation and expansion using Automation what benefits are there to use Ansible Automation platform (AAP) over Ansible Web Executable (AWX)
 
