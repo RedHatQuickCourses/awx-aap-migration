@@ -7,6 +7,22 @@ The Ansible Automation platform Application Migration: Free to Enterprise course
 
 Duration: 40 Minutes
 
+== Objectives
+
+On completing this course, you should be able to:
+
+- Implement the steps provided to guide application migration.
+- Define and discuss the necessity for AWX to AAP 2.5 migration.
+- Define the benefits of utilizing AAP 2.5 to migrate applications.
+- Diagnose and rectify known issues in AWX application migrations.
+
+== Prerequisites
+
+This course assumes that you have the following prior experience:
+
+* Knowledge on Ansible Automation Platform.
+* Foundational Knowledge of Openshift and Linux. 
+
 == Contributors
 
 The PTL team acknowledges the valuable contributions of the following Red Hat associates:
@@ -17,19 +33,3 @@ The PTL team acknowledges the valuable contributions of the following Red Hat as
 - Rutuja Deshmukh (Editor)
 - Anna Swicegood (Learning Product Manager)
 
-== Objectives
-
-On completing this course, you should be able to:
-
-- Implement the steps provided to guide application migration.
-- Define and discuss the necessity for AWX to AAP 2.5 migration.
-- Define the benefits of utilizing AAP 2.5 to migrate applications.
-- Diagnose and rectify known issues in AWX application migrations.
-
-
-== Prerequisites
-
-This course assumes that you have the following prior experience:
-
-* Knowledge on Ansible Automation Platform.
-* Foundational Knowledge of Openshift and Linux. 
