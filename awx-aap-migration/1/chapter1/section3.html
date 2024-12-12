@@ -61,7 +61,7 @@
     <a class="nav-link" href="section1.html">Why did we create this migration course from free to enterprise software?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">What’s the benefit of using Ansible Automation Platform over AWX?</a>
+    <a class="nav-link" href="section2.html">WWhat’s the benefit of using AAP over AWX?</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section3.html">Deployment of AWX</a>
@@ -120,7 +120,7 @@
 <article class="doc">
 <h1 class="page">Deployment of AWX</h1>
 <div class="paragraph">
-<p>The following Video will cover the step to step guide to deploy the AWX operator on Opensfhit system:</p>
+<p>The following Video will cover the step-to-step guide to deploy the AWX operator on an OpenShift system:</p>
 </div>
 <div class="videoblock text-center">
 <div class="content">
@@ -133,99 +133,115 @@ Your browser does not support the video tag.
 <ol class="arabic">
 <li>
 <p>First create a clone of the awx-operator github repo:</p>
-<div class="literalblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>git clone https://github.com/ansible/awx-operator.git
-cd awx-operator
-git tag
-git checkout tags/&lt;tag&gt;</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/ansible/awx-operator.git</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd awx-operator</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git tag</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git checkout tags/&lt;tag&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>There is a make command to create resources which will further will be used to do the awx deployment:</p>
-<div class="literalblock">
+<p>There is a <em>make</em> command to create resources which will further be used to do the awx deployment:</p>
+<div class="listingblock execute">
 <div class="content">
-<pre>make deploy</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make deploy</code></pre>
 </div>
 </div>
 </li>
 <li>
 <p>Create a file called <code>kustomization.yaml</code> with the following content to build the AWX operator image:</p>
-<div class="literalblock">
+<div class="listingblock">
+<div class="title">Sample output:</div>
 <div class="content">
-<pre>apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-# Find the latest tag here: https://github.com/ansible/awx-operator/releases
- - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
-# Set the image tags to match the git version from above
-images:
- - name: quay.io/ansible/awx-operator
-   newTag: &lt;tag&gt;
-# Specify a custom namespace in which to install AWX
-namespace: awx</pre>
+<pre>  apiVersion: kustomize.config.k8s.io/v1beta1
+  kind: Kustomization
+  resources:
+  # Find the latest tag here: https://github.com/ansible/awx-operator/releases
+   - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
+  # Set the image tags to match the git version from above
+  images:
+   - name: quay.io/ansible/awx-operator
+     newTag: &lt;tag&gt;
+  # Specify a custom namespace in which to install AWX
+  namespace: awx</pre>
 </div>
 </div>
 </li>
 <li>
 <p>Apply the changes of the <code>kustomization.yaml</code> file by running this:</p>
-<div class="literalblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>oc apply -k .</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -k .</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
+<div class="title">Sample output:</div>
 <div class="content">
-<pre>Command output:
-namespace/awx created
-customresourcedefinition.apiextensions.k8s.io/awxbackups.awx.ansible.com created
-customresourcedefinition.apiextensions.k8s.io/awxrestores.awx.ansible.com created
-customresourcedefinition.apiextensions.k8s.io/awxs.awx.ansible.com created
-serviceaccount/awx-operator-controller-manager created
-role.rbac.authorization.k8s.io/awx-operator-awx-manager-role created
-role.rbac.authorization.k8s.io/awx-operator-leader-election-role created
-clusterrole.rbac.authorization.k8s.io/awx-operator-metrics-reader created
-clusterrole.rbac.authorization.k8s.io/awx-operator-proxy-role created
-rolebinding.rbac.authorization.k8s.io/awx-operator-awx-manager-rolebinding created
-rolebinding.rbac.authorization.k8s.io/awx-operator-leader-election-rolebinding created
-clusterrolebinding.rbac.authorization.k8s.io/awx-operator-proxy-rolebinding created
-configmap/awx-operator-awx-manager-config created
-service/awx-operator-controller-manager-metrics-service created
-deployment.apps/awx-operator-controller-manager created</pre>
+<pre>  Command output:
+  namespace/awx created
+  customresourcedefinition.apiextensions.k8s.io/awxbackups.awx.ansible.com created
+  customresourcedefinition.apiextensions.k8s.io/awxrestores.awx.ansible.com created
+  customresourcedefinition.apiextensions.k8s.io/awxs.awx.ansible.com created
+  serviceaccount/awx-operator-controller-manager created
+  role.rbac.authorization.k8s.io/awx-operator-awx-manager-role created
+  role.rbac.authorization.k8s.io/awx-operator-leader-election-role created
+  clusterrole.rbac.authorization.k8s.io/awx-operator-metrics-reader created
+  clusterrole.rbac.authorization.k8s.io/awx-operator-proxy-role created
+  rolebinding.rbac.authorization.k8s.io/awx-operator-awx-manager-rolebinding created
+  rolebinding.rbac.authorization.k8s.io/awx-operator-leader-election-rolebinding created
+  clusterrolebinding.rbac.authorization.k8s.io/awx-operator-proxy-rolebinding created
+  configmap/awx-operator-awx-manager-config created
+  service/awx-operator-controller-manager-metrics-service created
+  deployment.apps/awx-operator-controller-manager created</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Edit the <code>awx-demo.yml</code> file with the following content which will do the deployment of resources:</p>
-<div class="literalblock">
+<p>Edit the <code>awx-demo.yml</code> file with the following content, which will do the deployment of resources:</p>
+<div class="listingblock">
+<div class="title">Sample output:</div>
 <div class="content">
-<pre>apiVersion: awx.ansible.com/v1beta1
-kind: AWX
-metadata:
- name: awx-demo
-spec:
- service_type: clusterip
- ingress_type: Route</pre>
+<pre>  apiVersion: awx.ansible.com/v1beta1
+  kind: AWX
+  metadata:
+   name: awx-demo
+  spec:
+   service_type: clusterip
+   ingress_type: Route</pre>
 </div>
 </div>
 </li>
 <li>
 <p>Make sure to add this new file to the list of resources in your <code>kustomization.yaml</code> file:</p>
-<div class="literalblock">
+<div class="listingblock">
+<div class="title">Sample output:</div>
 <div class="content">
-<pre>resources:
- - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
- # Add this extra line:
- - awx-demo.yml</pre>
+<pre>  resources:
+   - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
+   # Add this extra line:
+   - awx-demo.yml</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Apply the changes to create the AWX instance in the Openshift cluster</p>
-<div class="literalblock">
+<p>Apply the changes to create the AWX instance in the Openshift cluster:</p>
+<div class="listingblock execute">
 <div class="content">
-<pre>oc apply -k .</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -k .</code></pre>
 </div>
 </div>
 </li>
@@ -238,7 +254,7 @@ spec:
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Create Resources on the AWX which can be confirmed after migration Following Video Tutorial will help in doing that.
+Create Resources on the AWX, which can be confirmed after migration. The following video tutorial will help in doing that.
 </td>
 </tr>
 </table>
@@ -251,7 +267,7 @@ Your browser does not support the video tag.
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">What’s the benefit of using Ansible Automation Platform over AWX?</a></span>
+  <span class="prev"><a href="section2.html">WWhat’s the benefit of using AAP over AWX?</a></span>
   <span class="next"><a href="section4.html">Deployment of the Ansible Automation Platform 2.5 operator</a></span>
 </nav>
 </article>

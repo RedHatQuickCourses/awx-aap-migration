@@ -61,7 +61,7 @@
     <a class="nav-link" href="section1.html">Why did we create this migration course from free to enterprise software?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">What’s the benefit of using Ansible Automation Platform over AWX?</a>
+    <a class="nav-link" href="section2.html">WWhat’s the benefit of using AAP over AWX?</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Deployment of AWX</a>
@@ -120,7 +120,7 @@
 <article class="doc">
 <h1 class="page">Migration of AWX to AAP 2.5</h1>
 <div class="paragraph">
-<p>The following video is the step to step guide for doing the migration:</p>
+<p>The following video is the step-to-step guide for doing the migration:</p>
 </div>
 <div class="videoblock text-center">
 <div class="content">
@@ -132,73 +132,122 @@ Your browser does not support the video tag.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Run the following command to only make the resources available like postgres on the openshift deployed system:</p>
-<div class="literalblock">
+<p>Run the following command to only make the resources available like postgres on the OpenShift deployed system:</p>
+<div class="listingblock execute">
 <div class="content">
-<pre>oc apply -f - &lt;&lt; EOF
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f - &lt;&lt; EOF
 kind: AnsibleAutomationPlatform
 apiVersion: aap.ansible.com/v1alpha1
 metadata:
   name: aap
   namespace: awx
 spec:
- replicas: 0
-EOF</pre>
+  replicas: 0
+EOF</code></pre>
 </div>
 </div>
 </li>
 <li>
 <p>To set the current namespace as awx.</p>
-<div class="literalblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>oc config set-context --current --namespace=awx</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc config set-context --current --namespace=awx</code></pre>
 </div>
 </div>
 </li>
 <li>
 <p>Export the below variables so that we will be used to create the commands to run the migration:</p>
-<div class="literalblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>export AWX_NAMESPACE=awx
-export AWX_NAME=awx-demo
-export AWX_DB_NAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.database} | base64 -d)
-export AWX_DB_HOST=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.host} | base64 -d)
-export AWX_DB_PASSWORD=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.password} | base64 -d)
-export AWX_DB_PORT=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.port} | base64 -d)
-export AWX_DB_USERNAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.username} | base64 -d)</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AWX_NAMESPACE=awx</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>export AUTOMATION_CONTROLLER_NAME=aap
-export AUTOMATION_CONTROLLER_NAMESPACE=awx
-export AUTOMATION_CONTROLLER_DB_NAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.database} | base64 -d)
-export AUTOMATION_CONTROLLER_DB_PASSWORD=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.password} | base64 -d)
-export AUTOMATION_CONTROLLER_DB_PORT=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.port} | base64 -d)
-export AUTOMATION_CONTROLLER_DB_USERNAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.username} | base64 -d)
-export AUTOMATION_CONTROLLER_DB_HOST=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.host} | base64 -d)</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AWX_NAME=awx-demo</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AWX_DB_NAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.database} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AWX_DB_HOST=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.host} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AWX_DB_PASSWORD=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.password} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AWX_DB_PORT=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.port} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AWX_DB_USERNAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.username} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AUTOMATION_CONTROLLER_NAME=aap</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AUTOMATION_CONTROLLER_NAMESPACE=awx</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AUTOMATION_CONTROLLER_DB_NAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.database} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AUTOMATION_CONTROLLER_DB_PASSWORD=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.password} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AUTOMATION_CONTROLLER_DB_PORT=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.port} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AUTOMATION_CONTROLLER_DB_USERNAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.username} | base64 -d)</code></pre>
+</div>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export AUTOMATION_CONTROLLER_DB_HOST=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.host} | base64 -d)</code></pre>
 </div>
 </div>
 </li>
 <li>
 <p>Run the following command to enter the AWX postgres database container:</p>
-<div class="literalblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>oc exec -it $AWX_NAME-postgres-15-0 -- bash</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -it $AWX_NAME-postgres-15-0 -- bash</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Run the following command inside the Container to migrate the data:</p>
-<div class="literalblock">
+<p>Run the following command inside the container to migrate the data:</p>
+<div class="listingblock execute">
 <div class="content">
-<pre>PGPASSWORD=$AWX_DB_PASSWORD pg_dump -h $AWX_DB_HOST -U $AWX_DB_USERNAME -d $AWX_DB_NAME -p $AWX_DB_PORT -F custom  --exclude-table-data 'main_jobevent*' --exclude-table-data 'main_job' | PGPASSWORD=$AUTOMATION_CONTROLLER_DB_PASSWORD pg_restore --clean --if-exists  --no-owner -h $AUTOMATION_CONTROLLER_DB_HOST -U $AUTOMATION_CONTROLLER_DB_USERNAME -d $AUTOMATION_CONTROLLER_DB_NAME -p $AUTOMATION_CONTROLLER_DB_PORT"</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PGPASSWORD=$AWX_DB_PASSWORD pg_dump -h $AWX_DB_HOST -U $AWX_DB_USERNAME -d $AWX_DB_NAME -p $AWX_DB_PORT -F custom  --exclude-table-data 'main_jobevent*' --exclude-table-data 'main_job' | PGPASSWORD=$AUTOMATION_CONTROLLER_DB_PASSWORD pg_restore --clean --if-exists  --no-owner -h $AUTOMATION_CONTROLLER_DB_HOST -U $AUTOMATION_CONTROLLER_DB_USERNAME -d $AUTOMATION_CONTROLLER_DB_NAME -p $AUTOMATION_CONTROLLER_DB_PORT</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
+<div class="title">Sample output:</div>
 <div class="content">
-<pre> Command breakdown:
- Part 1: PGPASSWORD=$AWX_DB_PASSWORD pg_dump ...
+<pre>Command breakdown:
+Part 1: PGPASSWORD=$AWX_DB_PASSWORD pg_dump ...
 •	PGPASSWORD=$AWX_DB_PASSWORD: Temporarily sets the PGPASSWORD environment variable to the password for the AWX database ($AWX_DB_PASSWORD). This allows the pg_dump command to authenticate without prompting for a password.
 •	pg_dump: A PostgreSQL utility used to back up a database.
 •	-h $AWX_DB_HOST: Specifies the hostname of the AWX database server. $AWX_DB_HOST should be replaced with the actual hostname.
@@ -207,17 +256,14 @@ export AUTOMATION_CONTROLLER_DB_HOST=$(oc get secret -n $AUTOMATION_CONTROLLER_N
 •	-p $AWX_DB_PORT: Specifies the port on which the AWX database server is listening. $AWX_DB_PORT should be replaced with the actual port number.
 •	-F custom: Specifies the output format of the dump. The custom format is a PostgreSQL-specific format that allows for more flexibility during restoration.
   • --exclude-table-data: This option is useful when you need the definition of a particular table even though you do not need the data in it
-•	|: The pipe (|) redirects the output of the pg_dump command to the input of the pg_restore command. Essentially, it allows the dump to be directly restored into another database.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre> Part 2: PGPASSWORD=$AWX_DB_PASSWORD pg_restore ...
+•	|: The pipe (|) redirects the output of the pg_dump command to the input of the pg_restore command. Essentially, it allows the dump to be directly restored into another database.
+
+Part 2: PGPASSWORD=$AWX_DB_PASSWORD pg_restore ...
 •	PGPASSWORD=$AUTOMATION_CONTROLLER_DB_PASSWORD: Again, sets the PGPASSWORD environment variable, but this time for the pg_restore command to authenticate with the target database.
 •	pg_restore: A PostgreSQL utility used to restore a database from a backup.
 •	--clean: Drops database objects before recreating them. This ensures that the target database is clean and only contains the objects from the backup.
 •	--if-exists: Used with --clean, it ensures that objects are only dropped if they exist. This prevents errors if some objects are not present in the target database.
-• --no-owner: If this flag isn’t set, then postgres will attribute anything it does to the owner of the original database, when importing and exporting, this could cause issues, so often we will say
+• --no-owner: If this flag isn’t set, then postgres will attribute anything it does to the owner of the original database. When importing and exporting, this could cause issues.
 •	-h $AUTOMATION_CONTROLLER_DB_HOST: Specifies the hostname of the target Automation Controller database server. $AUTOMATION_CONTROLLER_DB_HOST should be replaced with the actual hostname.
 •	-U $AUTOMATION_CONTROLLER_DB_USERNAME: Specifies the username to connect to the target database..
 •	-d $AUTOMATION_CONTROLLER_DB_NAME: Specifies the name of the target database (in this case, automationcontroller) into which the backup will be restored.
@@ -226,37 +272,37 @@ export AUTOMATION_CONTROLLER_DB_HOST=$(oc get secret -n $AUTOMATION_CONTROLLER_N
 </div>
 </li>
 <li>
-<p>To migrate the Organization / Teams and user run the below command on the terminal of aap-gateway-controller pod.</p>
-<div class="literalblock">
+<p>To migrate the Organization / Teams and user, run the below command on the terminal of aap-gateway-controller pod:</p>
+<div class="listingblock execute">
 <div class="content">
-<pre># aap-gateway-manage migrate_service_data --username admin --merge-organizations true --api-slug controller -v 3</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aap-gateway-manage migrate_service_data --username admin --merge-organizations true --api-slug controller -v 3</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Verify the data is migrated.</p>
 </div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Verify the data is migrated.</p>
-</div>
-<div class="paragraph">
 <p>NOTE:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>The above is suggested to be used for local users only. You will need to reset the Password for the users on first login <code>use old password for first login</code> for step to step guid check the Following video tutorial.</p>
+<p>The above is suggested to be used for local users only. You will need to reset the password for the users on first login. Use the old password for first login. For a step-to-step guide, check the following video tutorial.</p>
 </li>
 <li>
-<p>All Authentication Mechanism needs to be created manually on the Gateway due to centralized Authentication approach for all the softwares of Ansible Automation platform 2.5.</p>
+<p>The authentication mechanism needs to be created manually on the gateway due to the centralized authentication approach for all the software in Ansible Automation platform 2.5.</p>
+</li>
+</ol>
+</div>
 <div class="videoblock text-center">
 <div class="content">
 <video src="_images/user_login.mp4" width="700" height="400" controls>
 Your browser does not support the video tag.
 </video>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="section4.html">Deployment of the Ansible Automation Platform 2.5 operator</a></span>
