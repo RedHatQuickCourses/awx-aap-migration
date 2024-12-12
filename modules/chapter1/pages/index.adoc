@@ -1,9 +1,9 @@
-= Migration of AWX to AAP 2.5 
+= Migration of AWX to AAP 2.5
 
-You will cover the following points: 
+You will cover the following points:
 
  - Why did we create this migration course from free to enterprise software?
  - What’s the benefit of using Ansible Automation Platform over AWX?
- - Deployment of AWX 
+ - Deployment of AWX
  - Deployment of the Ansible Automation Platform 2.5 operator
- - Migration of AWX to AAP 2.5 
+ - Migration of AWX to AAP 2.5

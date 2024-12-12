@@ -1,6 +1,6 @@
 = Why did we create this migration course from free to enterprise software?
 
-There are several advantages to switching from a free to an enterprise software:
+There are several advantages to switching from a free to an enterprise software, including:
 
 - Increased Scalability: Supports the growing demands of expanding enterprises.
 - Enhanced Security: Advanced measures ensure data protection and compliance.
@@ -19,5 +19,4 @@ There are several advantages to switching from a free to an enterprise software:
 
 - Removal of Restrictions: Overcomes limitations common in free versions.
 
-This enables businesses to concentrate on innovation and expansion using Automation what benefits are there to use Ansible Automation platform (AAP) over Ansible Web Executable (AWX)
-
+This enables businesses to concentrate on innovation and expansion using automation.
