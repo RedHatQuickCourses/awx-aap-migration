@@ -61,7 +61,7 @@
     <a class="nav-link" href="section1.html">Why did we create this migration course from free to enterprise software?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">WWhat’s the benefit of using AAP over AWX?</a>
+    <a class="nav-link" href="section2.html">What’s the benefit of using AAP over AWX?</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section3.html">Deployment of AWX</a>
@@ -129,6 +129,9 @@ Your browser does not support the video tag.
 </video>
 </div>
 </div>
+<div class="paragraph">
+<p>Note: If deployed <code>Migrate from AWX to AAP 2.5 (AWS)</code> While doing the login to Openshift click on <code>htpasswd_provider</code> to login using user <code>admin</code>.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -167,17 +170,17 @@ Your browser does not support the video tag.
 <div class="listingblock">
 <div class="title">Sample output:</div>
 <div class="content">
-<pre>  apiVersion: kustomize.config.k8s.io/v1beta1
-  kind: Kustomization
-  resources:
-  # Find the latest tag here: https://github.com/ansible/awx-operator/releases
-   - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
-  # Set the image tags to match the git version from above
-  images:
-   - name: quay.io/ansible/awx-operator
-     newTag: &lt;tag&gt;
-  # Specify a custom namespace in which to install AWX
-  namespace: awx</pre>
+<pre>apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+# Find the latest tag here: https://github.com/ansible/awx-operator/releases
+  - github.com/ansible/awx-operator/config/default?ref=&lt;tag&gt;
+# Set the image tags to match the git version from above
+images:
+  - name: quay.io/ansible/awx-operator
+    newTag: &lt;tag&gt;
+# Specify a custom namespace in which to install AWX
+namespace: awx</pre>
 </div>
 </div>
 </li>
@@ -215,13 +218,13 @@ Your browser does not support the video tag.
 <div class="listingblock">
 <div class="title">Sample output:</div>
 <div class="content">
-<pre>  apiVersion: awx.ansible.com/v1beta1
-  kind: AWX
-  metadata:
-   name: awx-demo
-  spec:
-   service_type: clusterip
-   ingress_type: Route</pre>
+<pre>apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-demo
+spec:
+  service_type: clusterip
+  ingress_type: Route</pre>
 </div>
 </div>
 </li>
@@ -267,7 +270,7 @@ Your browser does not support the video tag.
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">WWhat’s the benefit of using AAP over AWX?</a></span>
+  <span class="prev"><a href="section2.html">What’s the benefit of using AAP over AWX?</a></span>
   <span class="next"><a href="section4.html">Deployment of the Ansible Automation Platform 2.5 operator</a></span>
 </nav>
 </article>
