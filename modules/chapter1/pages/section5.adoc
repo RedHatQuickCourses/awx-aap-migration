@@ -31,41 +31,11 @@ oc config set-context --current --namespace=awx
 [source,bash,role=execute]
 ----
 export AWX_NAMESPACE=awx
-----
-
-+
-[source,bash,role=execute]
-----
 export AWX_NAME=awx-demo
-----
-
-+
-[source,bash,role=execute]
-----
 export AWX_DB_NAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.database} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AWX_DB_HOST=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.host} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AWX_DB_PASSWORD=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.password} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AWX_DB_PORT=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.port} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AWX_DB_USERNAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-configuration -o jsonpath={.data.username} | base64 -d)
 ----
 
@@ -73,43 +43,22 @@ export AWX_DB_USERNAME=$(oc get secret -n $AWX_NAMESPACE $AWX_NAME-postgres-conf
 [source,bash,role=execute]
 ----
 export AUTOMATION_CONTROLLER_NAME=aap
-----
-
-+
-[source,bash,role=execute]
-----
 export AUTOMATION_CONTROLLER_NAMESPACE=awx
-----
-
-+
-[source,bash,role=execute]
-----
 export AUTOMATION_CONTROLLER_DB_NAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.database} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AUTOMATION_CONTROLLER_DB_PASSWORD=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.password} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AUTOMATION_CONTROLLER_DB_PORT=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.port} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AUTOMATION_CONTROLLER_DB_USERNAME=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.username} | base64 -d)
-----
-
-+
-[source,bash,role=execute]
-----
 export AUTOMATION_CONTROLLER_DB_HOST=$(oc get secret -n $AUTOMATION_CONTROLLER_NAMESPACE $AUTOMATION_CONTROLLER_NAME-controller-postgres-configuration -o jsonpath={.data.host} | base64 -d)
 ----
++
+Note: Please run the following command and verify the environment variables are set correctly before proceeding to next steps: 
++
+[source,bash,role=execute]
+----
+env | grep -i awx
+env | grep -i automation
+----
+
 
 . Run the following command to enter the AWX postgres database container:
 +
