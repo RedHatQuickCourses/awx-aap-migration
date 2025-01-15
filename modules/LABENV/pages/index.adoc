@@ -24,7 +24,7 @@ image::form.png[align=left,width=540,height=380]
 . **Log in** to the https://catalog.partner.demo.redhat.com/[RHDP portal,window=read-later]
 . **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
 +
-image::lab2.png[align=left,width=540,height=380]
+image::lab.png[align=left,width=540,height=380]
 
 . **Click** on the catalog entry in the search results.
 . On the catalog page, **click** the **Order** button.
