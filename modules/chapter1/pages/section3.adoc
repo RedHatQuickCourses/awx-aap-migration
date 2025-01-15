@@ -4,8 +4,6 @@ The following Video will cover the step-to-step guide to deploy the AWX operator
 
 video::awx_deployment.mp4[align="center",width=700,height=400]
 
-Note: If deployed `Migrate from AWX to AAP 2.5 (AWS)` While doing the login to Openshift click on `htpasswd_provider` to login using user `admin`.
-
 . First create a clone of the awx-operator github repo:
 +
 [source,bash,role=execute]
@@ -27,6 +25,8 @@ git tag
 ----
 git checkout tags/<tag>
 ----
+
+Note: Deploy the Awx version 24.0 or higher or else upgrade to awx 24.0 or higher version. 
 
 . There is a _make_ command to create resources which will further be used to do the awx deployment:
 +
