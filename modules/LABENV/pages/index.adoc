@@ -24,13 +24,13 @@ image::form.png[align=left,width=540,height=380]
 . **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
 . **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
 +
-image::lab.png[align=left,width=540,height=380]
+image::lab2.png[align=left,width=540,height=380]
 
 . **Click** on the catalog entry in the search results.
 . On the catalog page, **click** the **Order** button.
 . **Fill out** the required details in the order form.
 +
-image::form.png[align=left,width=540,height=380]
+image::form2.png[align=left,width=540,height=380]
 
 . **Review the warning** at the bottom of the form and **check the box** labeled: +
    *“I confirm that I understand the above warnings.”*
