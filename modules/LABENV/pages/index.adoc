@@ -4,7 +4,7 @@
 
 === Red Hat Associates
 
-. **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
+. **Log in** to the https://catalog.demo.redhat.com/[RHDP portal]
 . **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
 +
 image::lab.png[align=left,width=540,height=380]
@@ -21,7 +21,7 @@ image::form.png[align=left,width=540,height=380]
 
 === Red Hat Partners
 
-. **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
+. **Log in** to the https://catalog.partner.demo.redhat.com/[RHDP portal]
 . **Search** for the catalog entry: **Red Hat OpenShift Container Platform Cluster**.
 +
 image::lab2.png[align=left,width=540,height=380]
@@ -40,9 +40,4 @@ image::form2.png[align=left,width=540,height=380]
 - This lab may take approximately **60 minutes** to become ready.
 - You will receive an **email with access details** once your lab environment is ready.
 - You can also **retrieve lab access** directly from the RHDP portal.
-
-[[RHDP-Portal-Links]]
-=== RHDP Portal Links
-- RedHat associates: https://catalog.demo.redhat.com/catalog?search=awx[https://demo.redhat.com/,window=_blank]
-- RedHat partners: https://catalog.partner.demo.redhat.com/catalog?item=babylon-catalog-prod/partner.ocpmulti-wksp-cnv.prod&utm_source=webapp&utm_medium=share-link[https://partner.demo.redhat.com/,window=_blank]
 
