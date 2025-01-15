@@ -4,7 +4,7 @@
 
 === Red Hat Associates
 
-. **Log in** to the https://catalog.demo.redhat.com/[RHDP portal]
+. **Log in** to the https://catalog.demo.redhat.com/[RHDP portal,window=read-later]
 . **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
 +
 image::lab.png[align=left,width=540,height=380]
@@ -21,7 +21,7 @@ image::form.png[align=left,width=540,height=380]
 
 === Red Hat Partners
 
-. **Log in** to the https://catalog.partner.demo.redhat.com/[RHDP portal]
+. **Log in** to the https://catalog.partner.demo.redhat.com/[RHDP portal,window=read-later]
 . **Search** for the catalog entry: **Red Hat OpenShift Container Platform Cluster**.
 +
 image::lab2.png[align=left,width=540,height=380]
