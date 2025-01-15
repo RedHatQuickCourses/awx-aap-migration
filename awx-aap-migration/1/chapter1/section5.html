@@ -233,6 +233,22 @@ Part 2: PGPASSWORD=$AWX_DB_PASSWORD pg_restore ...
 </div>
 </li>
 <li>
+<p>Run the following command to deploy the resources like postgres on the OpenShift deployed system:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f - &lt;&lt; EOF
+kind: AnsibleAutomationPlatform
+apiVersion: aap.ansible.com/v1alpha1
+metadata:
+  name: aap
+  namespace: awx
+spec:
+  replicas: 0
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
 <p>To migrate the Organization / Teams and user, run the below command on the terminal of aap-gateway-controller pod:</p>
 <div class="listingblock execute">
 <div class="content">
