@@ -2,16 +2,35 @@
 
 == Instructions to Launch Your Lab on the Red Hat Demo Platform (RHDP)
 
+=== Red Hat Associates
+
 . **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
 . **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
 +
-image::lab.png[]
+image::lab.png[align=left,width=540,height=380]
 
 . **Click** on the catalog entry in the search results.
 . On the catalog page, **click** the **Order** button.
 . **Fill out** the required details in the order form.
 +
-image::form.png[]
+image::form.png[align=left,width=540,height=380]
+
+. **Review the warning** at the bottom of the form and **check the box** labeled: +
+   *“I confirm that I understand the above warnings.”*
+. **Click** the **Order** button to place your lab order.
+
+=== Red Hat Partners
+
+. **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
+. **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
++
+image::lab.png[align=left,width=540,height=380]
+
+. **Click** on the catalog entry in the search results.
+. On the catalog page, **click** the **Order** button.
+. **Fill out** the required details in the order form.
++
+image::form.png[align=left,width=540,height=380]
 
 . **Review the warning** at the bottom of the form and **check the box** labeled: +
    *“I confirm that I understand the above warnings.”*
@@ -21,10 +40,6 @@ image::form.png[]
 - This lab may take approximately **60 minutes** to become ready.
 - You will receive an **email with access details** once your lab environment is ready.
 - You can also **retrieve lab access** directly from the RHDP portal.
-
-=== How to Access Your Lab via the RHDP Portal:
-. On the RHDP portal, **click** on the **Services** option in the left-hand menu.
-. **Select your lab** from the listings on the right-hand side of the page to view access details.
 
 [[RHDP-Portal-Links]]
 === RHDP Portal Links
