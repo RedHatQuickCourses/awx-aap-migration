@@ -22,7 +22,7 @@ image::form.png[align=left,width=540,height=380]
 === Red Hat Partners
 
 . **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
-. **Search** for the catalog entry: **Migrate from AWX to AAP 2.5**.
+. **Search** for the catalog entry: **Red Hat OpenShift Container Platform Cluster**.
 +
 image::lab2.png[align=left,width=540,height=380]
 
@@ -44,5 +44,5 @@ image::form2.png[align=left,width=540,height=380]
 [[RHDP-Portal-Links]]
 === RHDP Portal Links
 - RedHat associates: https://catalog.demo.redhat.com/catalog?search=awx[https://demo.redhat.com/,window=_blank]
-- RedHat partners: https://partner.demo.redhat.com/[https://partner.demo.redhat.com/,window=_blank]
+- RedHat partners: https://catalog.partner.demo.redhat.com/catalog?item=babylon-catalog-prod/partner.ocpmulti-wksp-cnv.prod&utm_source=webapp&utm_medium=share-link[https://partner.demo.redhat.com/,window=_blank]
 
