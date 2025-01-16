@@ -101,7 +101,7 @@ Part 2: PGPASSWORD=$AWX_DB_PASSWORD pg_restore ...
 •	-p $AUTOMATION_CONTROLLER_DB_PORT: Specifies the port on which the target database server is listening. $AUTOMATION_CONTROLLER_DB_PORT should be replaced with the actual port number.
 ----
 
-. Run the following command to deploy the resources like postgres on the OpenShift deployed system:
+. Exit the postgres container and run the following command to deploy the resources for AAP on the OpenShift deployed system:
 +
 [source,bash,role=execute]
 ----
@@ -112,7 +112,7 @@ metadata:
   name: aap
   namespace: awx
 spec:
-  replicas: 0
+  replicas: 1
 EOF
 ----
 
