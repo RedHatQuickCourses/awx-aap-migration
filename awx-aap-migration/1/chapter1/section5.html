@@ -233,7 +233,7 @@ Part 2: PGPASSWORD=$AWX_DB_PASSWORD pg_restore ...
 </div>
 </li>
 <li>
-<p>Run the following command to deploy the resources like postgres on the OpenShift deployed system:</p>
+<p>Exit the postgres container and run the following command to deploy the resources for AAP on the OpenShift deployed system:</p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f - &lt;&lt; EOF
@@ -243,7 +243,7 @@ metadata:
   name: aap
   namespace: awx
 spec:
-  replicas: 0
+  replicas: 1
 EOF</code></pre>
 </div>
 </div>
