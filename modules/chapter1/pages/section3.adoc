@@ -1,114 +1,20 @@
 = Deployment of AWX
 
-The following Video will cover the step-to-step guide to deploy the AWX operator on an OpenShift system:
+Given the challenging and time-consuming nature of AWX deployment, we have bypassed the complexity by deploying the AWX lab ourselves. You can now access the pre-configured environment by following the video, sharing the login procedure: 
 
 video::awx_deployment.mp4[align="center",width=700,height=400]
 
-. First create a clone of the awx-operator github repo:
-+
-[source,bash,role=execute]
-----
-git clone https://github.com/ansible/awx-operator.git
-----
-+
-[source,bash,role=execute]
-----
-cd awx-operator
-----
-+
-[source,bash,role=execute]
-----
-git tag
-----
-+
-[source,bash,role=execute]
-----
-git checkout tags/<tag>
-----
+Here are the steps to log in to the AWX application on an OpenShift cluster: 
 
-Note: Deploy the Awx version 24.0 or higher or else upgrade to awx 24.0 or higher version. 
+. Login to *OpenShift Admin Console* using the credentials share on the RHDP login page. 
 
-. There is a _make_ command to create resources which will further be used to do the awx deployment:
-+
-[source,bash,role=execute]
-----
-make deploy
-----
+. Select the project as `awx`. 
 
-. Create a file called `kustomization.yaml` with the following content to build the AWX operator image:
-+
-.Sample output:
-----
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-# Find the latest tag here: https://github.com/ansible/awx-operator/releases
-  - github.com/ansible/awx-operator/config/default?ref=<tag>
-# Set the image tags to match the git version from above
-images:
-  - name: quay.io/ansible/awx-operator
-    newTag: <tag>
-# Specify a custom namespace in which to install AWX
-namespace: awx
-----
+. Go to `Networking` -->  `Routes` to access the `awx URL`. 
 
-. Apply the changes of the `kustomization.yaml` file by running this:
-+
-[source,bash,role=execute]
-----
-oc apply -k .
-----
-+
-.Sample output:
-----
-  Command output:
-  namespace/awx created
-  customresourcedefinition.apiextensions.k8s.io/awxbackups.awx.ansible.com created
-  customresourcedefinition.apiextensions.k8s.io/awxrestores.awx.ansible.com created
-  customresourcedefinition.apiextensions.k8s.io/awxs.awx.ansible.com created
-  serviceaccount/awx-operator-controller-manager created
-  role.rbac.authorization.k8s.io/awx-operator-awx-manager-role created
-  role.rbac.authorization.k8s.io/awx-operator-leader-election-role created
-  clusterrole.rbac.authorization.k8s.io/awx-operator-metrics-reader created
-  clusterrole.rbac.authorization.k8s.io/awx-operator-proxy-role created
-  rolebinding.rbac.authorization.k8s.io/awx-operator-awx-manager-rolebinding created
-  rolebinding.rbac.authorization.k8s.io/awx-operator-leader-election-rolebinding created
-  clusterrolebinding.rbac.authorization.k8s.io/awx-operator-proxy-rolebinding created
-  configmap/awx-operator-awx-manager-config created
-  service/awx-operator-controller-manager-metrics-service created
-  deployment.apps/awx-operator-controller-manager created
-----
+. Go to `Workloads` --> `Secrets` --> `awx-demo-admin-password` for the `admin` user password for login.
 
-. Edit the `awx-demo.yml` file with the following content, which will do the deployment of resources:
-+
-.Sample output:
-----
-apiVersion: awx.ansible.com/v1beta1
-kind: AWX
-metadata:
-  name: awx-demo
-spec:
-  service_type: clusterip
-  ingress_type: Route
-----
 
-. Make sure to add this new file to the list of resources in your `kustomization.yaml` file:
-+
-.Sample output:
-----
-  resources:
-   - github.com/ansible/awx-operator/config/default?ref=<tag>
-   # Add this extra line:
-   - awx-demo.yml
-----
-
-. Apply the changes to create the AWX instance in the Openshift cluster:
-+
-[source,bash,role=execute]
-----
-oc apply -k .
-----
-
-NOTE: Create Resources on the AWX, which can be confirmed after migration. The following video tutorial will help in doing that.
+NOTE: Create Resources on the AWX, which can be confirmed after migration. The following video tutorial will help in doing that or you can create according to your requirement
 
 video::awx_resource_creation.mp4[align="center",width=700,height=400]
