@@ -1,12 +1,12 @@
 = Deployment of AWX
 
-Given the challenging and time-consuming nature of AWX deployment, we have bypassed the complexity by deploying the AWX lab ourselves. You can now access the pre-configured environment by following the video, sharing the login procedure: 
+Given the challenging and time-consuming nature of AWX deployment, we have bypassed the complexity by deploying the AWX lab ourselves. You can now access the pre-configured environment, please refer to the following login procedure: 
 
 video::awx_deployment.mp4[align="center",width=700,height=400]
 
 Here are the steps to log in to the AWX application on an OpenShift cluster: 
 
-. Login to *OpenShift Admin Console* using the credentials share on the RHDP login page. 
+. Login to *OpenShift Admin Console* using the credentials shared on the RHDP log in page. 
 
 . Select the project as `awx`. 
 
