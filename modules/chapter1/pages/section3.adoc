@@ -1,4 +1,4 @@
-= Deployment of AWX
+= AWX Environment
 
 Given the challenging and time-consuming nature of AWX deployment, we have bypassed the complexity by deploying the AWX lab ourselves. You can now access the pre-configured environment, please refer to the following login procedure: 
 
