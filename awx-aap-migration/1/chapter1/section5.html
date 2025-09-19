@@ -190,7 +190,7 @@ env | grep -i automation</code></pre>
 </div>
 </li>
 <li>
-<p>To obtain the correct output with the values, use the following command. This command will be used to run from the container to peform migration:</p>
+<p>To obtain the correct output with the values, use the following command. This command will be used to run from the container to perform migration:</p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "PGPASSWORD=$AWX_DB_PASSWORD pg_dump -h $AWX_DB_HOST -U $AWX_DB_USERNAME -d $AWX_DB_NAME -p $AWX_DB_PORT -F custom  --exclude-table-data 'main_jobevent*' --exclude-table-data 'main_job' | PGPASSWORD=$AUTOMATION_CONTROLLER_DB_PASSWORD pg_restore --clean --if-exists  --no-owner -h $AUTOMATION_CONTROLLER_DB_HOST -U $AUTOMATION_CONTROLLER_DB_USERNAME -d $AUTOMATION_CONTROLLER_DB_NAME -p $AUTOMATION_CONTROLLER_DB_PORT"</code></pre>
