@@ -59,7 +59,7 @@ env | grep -i awx
 env | grep -i automation
 ----
 
-. To obtain the correct output with the values, use the following command. This command will be used to run from the container to peform migration:
+. To obtain the correct output with the values, use the following command. This command will be used to run from the container to perform migration:
 +
 [source,bash,role=execute]
 ----
