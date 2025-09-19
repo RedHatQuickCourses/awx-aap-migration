@@ -59,6 +59,12 @@ env | grep -i awx
 env | grep -i automation
 ----
 
+. To obtain the correct output with the values, use the following command. This command will be used to run from the container to peform migration:
++
+[source,bash,role=execute]
+----
+echo "PGPASSWORD=$AWX_DB_PASSWORD pg_dump -h $AWX_DB_HOST -U $AWX_DB_USERNAME -d $AWX_DB_NAME -p $AWX_DB_PORT -F custom  --exclude-table-data 'main_jobevent*' --exclude-table-data 'main_job' | PGPASSWORD=$AUTOMATION_CONTROLLER_DB_PASSWORD pg_restore --clean --if-exists  --no-owner -h $AUTOMATION_CONTROLLER_DB_HOST -U $AUTOMATION_CONTROLLER_DB_USERNAME -d $AUTOMATION_CONTROLLER_DB_NAME -p $AUTOMATION_CONTROLLER_DB_PORT"
+----
 
 . Run the following command to enter the AWX postgres database container:
 +
@@ -67,7 +73,7 @@ env | grep -i automation
 oc exec -it $AWX_NAME-postgres-15-0 -- bash
 ----
 
-. Run the following command inside the container to migrate the data:
+. Copy the command output from `step 4` and run it inside the container to migrate the data:
 +
 [source,bash,role=execute]
 ----
